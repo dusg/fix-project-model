@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package org.dusg.fixProjectModule.services
 
-import org.jetbrains.plugins.template.MyBundle
+import org.dusg.fixProjectModule.MyBundle
 
 class MyApplicationService {
 

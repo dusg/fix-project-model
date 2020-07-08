@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template
+package org.dusg.fixProjectModule
 
 import com.intellij.AbstractBundle
 import org.jetbrains.annotations.NonNls

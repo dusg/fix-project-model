@@ -1,8 +1,8 @@
-package org.jetbrains.plugins.template.listeners
+package org.dusg.fixProjectModule.listeners
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.ProjectManagerListener
-import org.jetbrains.plugins.template.services.MyProjectService
+import org.dusg.fixProjectModule.services.MyProjectService
 
 internal class MyProjectManagerListener : ProjectManagerListener {
 

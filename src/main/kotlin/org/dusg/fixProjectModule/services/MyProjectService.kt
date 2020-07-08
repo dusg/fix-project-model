@@ -1,7 +1,7 @@
-package org.jetbrains.plugins.template.services
+package org.dusg.fixProjectModule.services
 
 import com.intellij.openapi.project.Project
-import org.jetbrains.plugins.template.MyBundle
+import org.dusg.fixProjectModule.MyBundle
 
 class MyProjectService(project: Project) {
 
