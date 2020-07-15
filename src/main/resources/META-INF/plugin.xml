@@ -1,7 +1,18 @@
 <idea-plugin>
     <id>org.dusg.plugins.fixProjectModule</id>
     <name>FixProjectModule</name>
-    <vendor>Du EnGuang</vendor>
+    <description>
+        maven工程reload的时候会自动更新project module，但是有时候需要修改一下依赖循序，每次手动调整过于麻烦，本插件仅供本人团队使用。
+    </description>
+   <change-notes>
+     本更新包括：
+        性能优化。
+        bug 修复。
+        修改插件图标。
+        增加插件描述信息。
+        增加change notes。
+   </change-notes>
+    <vendor url="https://github.com/dusg/fix-project-model" email="dusiguang@gmail.com">杜恩光</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
