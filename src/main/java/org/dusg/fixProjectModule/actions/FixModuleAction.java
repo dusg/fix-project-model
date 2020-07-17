@@ -21,34 +21,38 @@ class FixModuleAction extends AnAction {
             return;
         }
         ModuleManager moduleManager = ModuleManager.getInstance(project);
-        @Nullable Module module =
+        @Nullable Module profilerModule =
                 moduleManager.findModuleByName("com.enflame.profiler");
-        if (module == null) {
+        if (profilerModule == null) {
             return ;
         }
-        Module depCore = moduleManager.findModuleByName("com.enflame.core");
+        Module coreModule = moduleManager.findModuleByName("com.enflame.core");
 
-        if (depCore == null) {
+        if (coreModule == null) {
             return;
         }
-        Module depDe = moduleManager.findModuleByName("de.jaret.util");
-        if (depDe == null) {
+        Module jaretModule = moduleManager.findModuleByName("de.jaret.util");
+        if (jaretModule == null) {
             return;
         }
-//        ModuleRootManager rootModule = ModuleRootManager.getInstance(module);
-//        rootModule.getModifiableModel().addModuleOrderEntry(depCore);
 
-        ModuleRootModificationUtil.updateModel(module, modifiableRootModel -> {
-            doAddModule(modifiableRootModel, depCore);
-            doAddModule(modifiableRootModel, depDe);
+        ModuleRootModificationUtil.updateModel(profilerModule, modifiableRootModel -> {
+            doAddModule(modifiableRootModel, coreModule);
+            doAddModule(modifiableRootModel, jaretModule);
         });
 
-        ModuleRootModificationUtil.updateModel(depCore, modifiableRootModel -> {
-            doAddModule(modifiableRootModel, depDe);
+        ModuleRootModificationUtil.updateModel(coreModule, modifiableRootModel -> {
+            doAddModule(modifiableRootModel, jaretModule);
+        });
+        Module graphModule = moduleManager.findModuleByName("com.enflame.model.graph");
+        if (graphModule == null) {
+            return;
+        }
+        ModuleRootModificationUtil.updateModel(graphModule, modifiableRootModel -> {
+            doAddModule(modifiableRootModel, coreModule);
         });
 
         new MyNotifier().notify(project, "Success fix project.");
-//        ModuleRootManagerEx.getInstanceEx(module).orderEntries
     }
 
     private void doAddModule(ModifiableRootModel modifiableRootModel, Module dep) {
