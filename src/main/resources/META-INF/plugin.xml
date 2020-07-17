@@ -1,36 +1,38 @@
 <idea-plugin>
-    <id>org.dusg.plugins.fixProjectModule</id>
-    <name>FixProjectModule</name>
-    <description>
-        maven工程reload的时候会自动更新project module，但是有时候需要修改一下依赖循序，每次手动调整过于麻烦，本插件仅供本人团队使用。
-    </description>
-   <change-notes>
-     本更新包括：
-        性能优化。
-        bug 修复。
-        修改插件图标。
-        增加插件描述信息。
-        增加change notes。
-   </change-notes>
-    <vendor url="https://github.com/dusg/fix-project-model" email="dusiguang@gmail.com">杜恩光</vendor>
+  <id>org.dusg.plugins.fixProjectModule</id>
+  <name>FixProjectModule</name>
+  <description>
+    When the Maven project is reload, the project module will be automatically updated. However, sometimes it
+    is necessary to modify the dependency sequence. Each manual adjustment is too cumbersome. This plug-in is only used
+    by my team.
+  </description>
+  <change-notes>
+    This update includes:
+    Performance optimization.
+    Bug fix.
+    Modify the plug-in icon.
+    Add plug-in description information.
+    Add change notes.
+  </change-notes>
+  <vendor url="https://github.com/dusg/fix-project-model" email="dusiguang@gmail.com">DESG</vendor>
 
-    <!-- Product and plugin compatibility requirements -->
-    <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
+  <!-- Product and plugin compatibility requirements -->
+  <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
+  <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="org.dusg.fixProjectModule.services.MyApplicationService"/>
-        <projectService serviceImplementation="org.dusg.fixProjectModule.services.MyProjectService"/>
-    </extensions>
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationService serviceImplementation="org.dusg.fixProjectModule.services.MyApplicationService"/>
+    <projectService serviceImplementation="org.dusg.fixProjectModule.services.MyProjectService"/>
+  </extensions>
 
-    <projectListeners>
-        <listener class="org.dusg.fixProjectModule.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </projectListeners>
-    <actions>
-        <action id="org.dusg.fixProjectModule.actions.FixModuleAction"
-                class="org.dusg.fixProjectModule.actions.FixModuleAction" text="Fix Profiler Project Module">
-            <add-to-group group-id="RunMenu" anchor="last"/>
-        </action>
-    </actions>
+  <projectListeners>
+    <listener class="org.dusg.fixProjectModule.listeners.MyProjectManagerListener"
+              topic="com.intellij.openapi.project.ProjectManagerListener"/>
+  </projectListeners>
+  <actions>
+    <action id="org.dusg.fixProjectModule.actions.FixModuleAction"
+            class="org.dusg.fixProjectModule.actions.FixModuleAction" text="Fix Profiler Project Module">
+      <add-to-group group-id="RunMenu" anchor="last"/>
+    </action>
+  </actions>
 </idea-plugin>

@@ -8,6 +8,11 @@
 > **TL;DR:** Click the <kbd>Use this template</kbd> button and clone it in IntelliJ IDEA.
 
 <!-- Plugin description -->
+    When the Maven project is reload, the project module will be automatically updated. However, sometimes it
+    is necessary to modify the dependency sequence. Each manual adjustment is too cumbersome. This plug-in is only used
+    by my team.
+<!-- Plugin description end -->
+
 **IntelliJ Platform Plugin Template** is a repository that provides a pure boilerplate template to make it easier
 to create a new plugin project (check the [Creating a repository from a template][gh:template] article).
 
@@ -16,8 +21,6 @@ developers by preconfiguring the project scaffold and CI, linking to the proper 
 everything organized.
 
 [gh:template]: https://help.github.com/en/enterprise/2.20/user/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template
-<!-- Plugin description end -->
-
 If you're still not quite sure what this is all about, read our introduction:
 [What is the IntelliJ Platform?][docs:intro]
 
