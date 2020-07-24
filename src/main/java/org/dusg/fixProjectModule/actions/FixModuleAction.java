@@ -52,6 +52,15 @@ class FixModuleAction extends AnAction {
             doAddModule(modifiableRootModel, coreModule);
         });
 
+        Module profilerTestsModule = moduleManager.findModuleByName("com.enflame.profiler.tests");
+        if (profilerTestsModule != null) {
+            ModuleRootModificationUtil.updateModel(profilerTestsModule, modifiableRootModel -> {
+                doAddModule(modifiableRootModel, coreModule);
+                doAddModule(modifiableRootModel, profilerModule);
+            });
+
+        }
+
         new MyNotifier().notify(project, "Success fix project.");
     }
 
