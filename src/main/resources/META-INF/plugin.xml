@@ -21,13 +21,13 @@
   <depends>com.intellij.modules.platform</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <applicationService serviceImplementation="org.dusg.fixProjectModule.services.MyApplicationService"/>
-    <projectService serviceImplementation="org.dusg.fixProjectModule.services.MyProjectService"/>
+<!--    <applicationService serviceImplementation="org.dusg.fixProjectModule.services.MyApplicationService"/>-->
+<!--    <projectService serviceImplementation="org.dusg.fixProjectModule.services.MyProjectService"/>-->
   </extensions>
 
   <projectListeners>
-    <listener class="org.dusg.fixProjectModule.listeners.MyProjectManagerListener"
-              topic="com.intellij.openapi.project.ProjectManagerListener"/>
+<!--    <listener class="org.dusg.fixProjectModule.listeners.MyProjectManagerListener"-->
+<!--              topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
   </projectListeners>
   <actions>
     <action id="org.dusg.fixProjectModule.actions.FixModuleAction"

@@ -72,7 +72,7 @@ public class ShareClipboardAction extends AnAction {
                 try {
                     updateClipboardFromFile();
                     updateFileContentFromClipboard();
-                    Thread.sleep(500);
+                    Thread.sleep(100);
                 } catch (IOException | UnsupportedFlavorException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -85,7 +85,7 @@ public class ShareClipboardAction extends AnAction {
             if (clipboardString.equals(lastContend)) {
                 return;
             }
-            file.setBinaryContent(clipboardString.getBytes(file.getCharset()));
+            Files.write(Paths.get(file.getPath()), clipboardString.getBytes(file.getCharset()));
             lastContend = clipboardString;
             System.out.println("update shared file: " + lastContend);
         }
