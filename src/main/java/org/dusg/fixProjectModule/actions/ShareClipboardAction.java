@@ -17,10 +17,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.FileTime;
 
 public class ShareClipboardAction extends AnAction {
 
@@ -51,7 +50,7 @@ public class ShareClipboardAction extends AnAction {
     class ClipboardTask extends Task.Backgroundable {
 
         private final VirtualFile file;
-        private long lastStamp = 0;
+        private FileTime lastStamp;
         private String lastContend;
 
         public ClipboardTask(@Nullable Project project, VirtualFile filePath) {
@@ -92,17 +91,18 @@ public class ShareClipboardAction extends AnAction {
         }
 
         private void updateClipboardFromFile() throws IOException {
-            long timeStamp = file.getTimeStamp();
-            if (timeStamp == lastStamp) {
+            FileTime timeStamp = Files.getLastModifiedTime(Paths.get(file.getPath()));
+            if (timeStamp.equals(lastStamp)) {
                 return;
             }
-
-            String content = new String(file.contentsToByteArray(), file.getCharset());
+            lastStamp = timeStamp;
+            String content = new String(Files.readAllBytes(Paths.get(file.getPath())), file.getCharset());
             if (content.equals(lastContend)) {
                 return;
             }
-            ClipboardUtils.setClipboardString(lastContend);
-            System.out.println("update clipboard: " + lastContend);
+            ClipboardUtils.setClipboardString(content);
+            System.out.println("update clipboard: " + content);
+            lastContend = content;
         }
     }
 }
