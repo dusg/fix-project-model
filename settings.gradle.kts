@@ -1,1 +1,1 @@
-rootProject.name = "Fix Project Module"
+rootProject.name = "fix-project-model"
