@@ -34,5 +34,10 @@
             class="org.dusg.fixProjectModule.actions.FixModuleAction" text="Fix Profiler Project Module">
       <add-to-group group-id="RunMenu" anchor="last"/>
     </action>
+    <action id="org.dusg.fixProjectModule.actions.ShareClipboardAction"
+            class="org.dusg.fixProjectModule.actions.ShareClipboardAction" text="Share Clipboard "
+            description="Share Clipboard ">
+      <add-to-group group-id="ToolsMenu" anchor="last"/>
+    </action>
   </actions>
 </idea-plugin>
