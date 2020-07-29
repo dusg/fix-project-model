@@ -1,5 +1,6 @@
 package org.dusg.fixProjectModule.actions;
 
+import com.intellij.execution.Platform;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.application.ex.ClipboardUtil;
@@ -72,7 +73,11 @@ public class ShareClipboardAction extends AnAction {
                 try {
                     updateClipboardFromFile();
                     updateFileContentFromClipboard();
-                    Thread.sleep(100);
+                    if (Platform.current().equals(Platform.UNIX)) {
+                        Thread.sleep(100);
+                    } else {
+                        Thread.sleep(1000);
+                    }
                 } catch (IOException | UnsupportedFlavorException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -86,21 +91,25 @@ public class ShareClipboardAction extends AnAction {
                 return;
             }
             Files.write(Paths.get(file.getPath()), clipboardString.getBytes(file.getCharset()));
+
             lastContend = clipboardString;
             System.out.println("update shared file: " + lastContend);
         }
 
         private void updateClipboardFromFile() throws IOException {
-            FileTime timeStamp = Files.getLastModifiedTime(Paths.get(file.getPath()));
-            if (timeStamp.equals(lastStamp)) {
-                return;
+            if (Platform.current().equals(Platform.UNIX)) {
+                FileTime timeStamp = Files.getLastModifiedTime(Paths.get(file.getPath()));
+                if (timeStamp.equals(lastStamp)) {
+                    return;
+                }
+                lastStamp = timeStamp;
             }
-            lastStamp = timeStamp;
             String content = new String(Files.readAllBytes(Paths.get(file.getPath())), file.getCharset());
             if (content.equals(lastContend)) {
                 return;
             }
             ClipboardUtils.setClipboardString(content);
+
             System.out.println("update clipboard: " + content);
             lastContend = content;
         }
