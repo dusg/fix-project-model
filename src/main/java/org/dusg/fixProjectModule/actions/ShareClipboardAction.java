@@ -44,7 +44,6 @@ public class ShareClipboardAction extends AnAction {
         VirtualFile file = files[0];
         task = new ClipboardTask(e.getProject(), file);
         ProgressManager.getInstance().run(task);
-        System.out.println(file.getPath());
     }
 
     class ClipboardTask extends Task.Backgroundable {
@@ -71,7 +70,11 @@ public class ShareClipboardAction extends AnAction {
                 try {
                     updateClipboardFromFile();
                     updateFileContentFromClipboard();
+<<<<<<< HEAD
                     Thread.sleep(100);
+=======
+                    Thread.sleep(500);
+>>>>>>> 增加粘贴板共享功能
                 } catch (IOException | UnsupportedFlavorException | InterruptedException e) {
                     e.printStackTrace();
                 }
