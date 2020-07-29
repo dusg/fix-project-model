@@ -19,11 +19,13 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ShareClipboardAction extends AnAction {
 
     static Task.Backgroundable task;
+
     @Override
     public void update(@NotNull AnActionEvent e) {
         if (task == null) {
@@ -61,6 +63,7 @@ public class ShareClipboardAction extends AnAction {
         public void run(@NotNull ProgressIndicator indicator) {
             listeningClipboard(indicator);
         }
+
         private void listeningClipboard(@NotNull ProgressIndicator indicator) {
             for (; ; ) {
                 if (indicator.isCanceled()) {
@@ -83,7 +86,7 @@ public class ShareClipboardAction extends AnAction {
             if (clipboardString.equals(lastContend)) {
                 return;
             }
-            Files.writeString(Paths.get(file.getPath()), clipboardString, StandardCharsets.UTF_8);
+            file.setBinaryContent(clipboardString.getBytes(file.getCharset()));
             lastContend = clipboardString;
             System.out.println("update shared file: " + lastContend);
         }
@@ -94,8 +97,8 @@ public class ShareClipboardAction extends AnAction {
                 return;
             }
 
-            String contend = Files.readString(Paths.get(file.getPath()), file.getCharset());
-            if (contend.equals(lastContend)) {
+            String content = new String(file.contentsToByteArray(), file.getCharset());
+            if (content.equals(lastContend)) {
                 return;
             }
             ClipboardUtils.setClipboardString(lastContend);
