@@ -80,17 +80,3 @@ class FixModuleAction extends AnAction {
     }
 }
 
-class MyNotifier {
-    private final NotificationGroup NOTIFICATION_GROUP = new NotificationGroup("Fix Project Module",
-            NotificationDisplayType.BALLOON, true);
-
-    public Notification notify(String content) {
-        return notify(null, content);
-    }
-
-    public Notification notify(Project project, String content) {
-        final Notification notification = NOTIFICATION_GROUP.createNotification(content, NotificationType.INFORMATION);
-        notification.notify(project);
-        return notification;
-    }
-}
