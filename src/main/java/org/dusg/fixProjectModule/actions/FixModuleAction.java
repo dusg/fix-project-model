@@ -60,7 +60,20 @@ class FixModuleAction extends AnAction {
             });
 
         }
-
+        Module graphTests = moduleManager.findModuleByName("com.enflame.model.graph.tests");
+        if (graphTests != null) {
+            ModuleRootModificationUtil.updateModel(graphTests, modifiableRootModel -> {
+                doAddModule(modifiableRootModel, graphModule);
+                doAddModule(modifiableRootModel, coreModule);
+            });
+        }
+        Module graphUITests = moduleManager.findModuleByName("com.enflame.model.graph.uitests");
+        if (graphUITests != null) {
+            ModuleRootModificationUtil.updateModel(graphUITests, modifiableRootModel -> {
+                doAddModule(modifiableRootModel, graphModule);
+                doAddModule(modifiableRootModel, coreModule);
+            });
+        }
         new MyNotifier().notify(project, "Success fix project.");
     }
 
